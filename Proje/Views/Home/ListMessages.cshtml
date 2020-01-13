@@ -1,0 +1,52 @@
+﻿@model List<Proje.Models.Message>
+@{
+    ViewBag.Title = "ListMessages";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Mesaj Listesi</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">ID</th>
+                                            <th class="border-0">Isim</th>
+                                            <th class="border-0">Email</th>
+                                            <th class="border-0">Telefon</th>
+                                            <th class="border-0">Içerik</th>
+                                            <th class="border-0">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var message in Model)
+                                        {
+
+                                        <tr>
+                                            <th>@message.Id</th>
+                                            <th>@message.Name</th>
+                                            <th>@message.Email</th>
+                                            <th>@message.Phone</th>
+                                            <th>@message.Content</th>
+                                            <th>@Html.ActionLink("Sil","DeleteMessage",new { messageId = message.Id } , new { @class = "btn btn-danger" })</th>
+                                        </tr>
+
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+

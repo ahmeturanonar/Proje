@@ -1,0 +1,43 @@
+﻿@model Proje.Models.Announcement
+@{
+    ViewBag.Title = "DeleteAnnouncement";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Kullanıcı Sil</h5>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr class="border-0">
+                                        <th class="border-0">Duyuru ID</th>
+                                        <th class="border-0">Duyuru Metni</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <th scope="row">@Model.AnnouncementId</th>
+                                        <td scope="row">@Html.Raw(Model.AnnouncementText)</td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" name="btnAnnouncementDelete" value="Sil" class="btn btn-danger" />
+                @Html.ActionLink("Duyuruları Listele", "ListsAnnouncement", "Home", new { @class = "btn btn-success" })
+            </div>
+        </div>
+    </div>
+</div>
+}

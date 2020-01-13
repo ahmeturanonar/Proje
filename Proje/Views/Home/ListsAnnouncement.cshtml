@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Proje.Models.Announcement>
+@{
+    ViewBag.Title = "ListsAnnouncement";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Duyuru Listesi</h5>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr class="border-0">
+                                        <th class="border-0">Duyuru ID</th>
+                                        <th class="border-0">Duyuru Metni</th>
+                                        <th class="border-0">Düzenle</th>
+                                        <th class="border-0">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var announcement in Model)
+                                    {
+
+                                        <tr>
+                                            <th scope="row">@announcement.AnnouncementId</th>
+                                            <td>@Html.Raw(announcement.AnnouncementText)</td>
+                                            <td>@Html.ActionLink("Düzenle", "EditAnnouncement", "Home", new { announcement_id = announcement.AnnouncementId }, new { @class = "btn btn-success" })</td>
+                                            <td>@Html.ActionLink("Sil", "DeleteAnnouncement", "Home", new { announcement_id = announcement.AnnouncementId  }, new { @class = "btn btn-danger" })</td>
+                                        </tr>
+
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

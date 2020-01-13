@@ -1,0 +1,52 @@
+﻿@model Proje.Models.Post
+@{
+    ViewBag.Title = "CreateArticle";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+@using (Html.BeginForm("CreateArticle", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Yeni Yazı</h5>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Yazı Baslıgı</th>
+                                        <th scope="col">Kategori</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+
+                                        <th scope="row">@Html.TextBoxFor(x => x.PostTitle, new { @class = "form-control" })</th>
+                                        <th scope="row">@Html.DropDownListFor(x=>x.CategoryId,(IEnumerable<SelectListItem>)ViewBag.Category,new {@class="dropdown-item"})</th>
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <h2>Yazı Icerigi</h2>
+                @Html.TextAreaFor(model => model.PostText, new { @id = "ckeditor", @class = "form-control", @rows = "200" })
+        <script>
+            CKEDITOR.replace("ckeditor");
+        </script>
+                <hr />
+            </div>
+            </div>
+            <b>Yazı Resmi:</b> <input type="file" name="file" class=""/>
+            <input type="submit" name="btnAddCategory" value="Ekle" class="btn btn-success" />
+            @Html.ActionLink("Yazıları Listele", "ListArticles", "Home", new { @class = "btn btn-warning" })
+    </div>
+}

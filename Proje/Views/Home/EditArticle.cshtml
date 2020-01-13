@@ -1,0 +1,55 @@
+﻿@model Proje.Models.Post
+@{
+    ViewBag.Title = "EditArticle";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+    <div class="container-fluid dashboard-content">
+        @using (Html.BeginForm("EditArticle", "Home"
+        , new { post_id = Model.PostId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Yazı Düzenle</h5>
+                        <div class="card-body">
+                            <div class="table-responsive ">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-0">Yazı ID</th>
+                                            <th class="border-0">Yazı Resmi</th>
+                                            <th class="border-0">Yazı Baslıgı</th>
+                                            <th class="border-0">Kategori</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <th scope="row">@Model.PostId</th>
+                                            <td><div class="m-r-10"><img width="45" class="rounded" src="@Html.DisplayTextFor(x=>x.PostImage)"></div></td>
+                                            <td>@Html.TextBoxFor(x => x.PostTitle, new { @class = "form-group" })</td>
+                                            <th scope="row">@Html.DropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>)ViewBag.Category, new { @class = "dropdown-item" })</th>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            @Html.TextAreaFor(model => model.PostText, new { @id = "ckeditor", @class = "form-control", @rows = "200" })
+                            <script>
+                                CKEDITOR.replace("ckeditor");
+                            </script>
+
+                        </div>
+                    </div>
+                    <b>Yazı Resmi: </b><input type="file" name="file" class="" />
+                    <br /> <br />
+                    <input type="submit" name="btnEdit" value="Güncelle" class="btn btn-success" />
+                    @Html.ActionLink("Listele", "ListArticles", "Home", new { @class = "btn btn-warning" })
+
+                </div>
+            </div>
+        }
+    </div>

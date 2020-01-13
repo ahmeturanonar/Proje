@@ -1,0 +1,53 @@
+﻿@model Proje.Models.Comment
+@{
+    ViewBag.Title = "EditComment";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm(new { commentId = Model.CommentId  }))
+{
+
+
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Yorum Düzenle</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">ID</th>
+                                            <th class="border-0">Içerik</th>
+                                            <th class="border-0">Paylasim Tarihi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <tr>
+                                            <th scope="row">@Model.CommentId</th>
+                                            <th scope="row">@Html.TextBoxFor(x => x.CommentText)</th>
+                                            <th scope="row">@Model.PublishDate</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <input type="submit" name="btnGuncelle" value="Güncelle"  class="btn btn-success"/>
+            @Html.ActionLink("Listeye Dön", "ListComments", "Home", null, new { @class="btn btn-warning"})
+
+        </div>
+    </div>
+
+
+
+}
+
+

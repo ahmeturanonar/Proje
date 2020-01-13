@@ -1,0 +1,101 @@
+﻿@model Proje.Models.User
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/AdminPanelContent//vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/AdminPanelContent/libs/css/style.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+</head>
+<!-- ============================================================== -->
+<!-- signup form  -->
+<!-- ============================================================== -->
+
+<body>
+    <!-- ============================================================== -->
+    <!-- signup form  -->
+    <!-- ============================================================== -->
+
+    <div class="splash-container">
+
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-1">Kayıt formu</h3>
+                <p>
+                    Lütfen kullanıcı bilgilerinizi giriniz.
+                </p>
+            </div>
+
+            @using (Html.BeginForm("Register", "Home", FormMethod.Post,new {enctype = "multipart/form-data" }))
+            {
+        <div class="card-body">
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control form-control-lg", required = "", placeholder = "Kullanıcı Adı", autocomplete = "off" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control form-control-lg", required = "", placeholder = "Şifre" , type="password" })
+            </div>
+
+            <div class="form-group">
+            <b>Profil Resmi:</b><input type="file" name="file" class=""/>
+            </div>
+
+            <div class="form-group pt-2">
+                <input type="submit" value="Kayıt Ol" class="btn btn-block btn-lg btn-primary"/>
+                @Html.ActionLink("Ana Sayfa", "Index", "Home", null, new { @class = "btn btn-warning btn-lg btn-block" })
+            </div>
+
+            @if (string.IsNullOrEmpty(ViewBag.Result))
+            {
+
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    @(ViewBag.Result)
+                </div>
+            }
+
+
+        </div>
+
+            }
+
+            <div class="card-footer bg-white text-center">
+                <p>
+                    Zaten üye misiniz?
+                    @Html.ActionLink("Giriş Yap.", "Login", "Home", new { @class = "text-secondary" })
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+</html>

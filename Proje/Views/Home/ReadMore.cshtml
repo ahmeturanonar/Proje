@@ -1,0 +1,187 @@
+﻿@model Proje.Models.Post
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ReadMore</title>
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/AdminPanelContent/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/AdminPanelContent/libs/css/style.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/charts/chartist-bundle/chartist.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/charts/morris-bundle/morris.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/charts/c3charts/c3.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <script src="~/AdminPanelContent/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="~/AdminPanelContent/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- slimscroll js -->
+    <script src="~/AdminPanelContent/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- main js -->
+    <script src="~/AdminPanelContent/libs/js/main-js.js"></script>
+    <!-- chart chartist js -->
+    <script src="~/AdminPanelContent/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <!-- sparkline js -->
+    <script src="~/AdminPanelContent/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <!-- morris js -->
+    <script src="~/AdminPanelContent/vendor/charts/morris-bundle/raphael.min.js"></script>
+    <script src="~/AdminPanelContent/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- chart c3 js -->
+    <script src="~/AdminPanelContent/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="~/AdminPanelContent/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="~/AdminPanelContent/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="~/AdminPanelContent/libs/js/dashboard-ecommerce.js"></script>
+</head>
+<body>
+
+    <div class="container-fluid">
+
+
+        <div id="accordion">
+            <div class="card mt-2">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            @Model.PostTitle
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        @Html.Raw(Model.PostText)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+
+            <div class="row bootstrap snippets">
+                <div class="col-md-6 col-md-offset-2 col-sm-12">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Yorum Yap!
+                            </div>
+
+
+
+
+
+                            @using (Html.BeginForm("ReadMore", "Home", new { returnUrl = Request.RawUrl, post_id = Model.PostId }))
+                            {
+
+
+                        <div class="panel-body">
+                            <textarea class="form-control" rows="3" name="txtTextArea"></textarea>
+                            <br>
+                            <input type="submit" value="Paylas" class="btn btn-info pull-right" />
+                            @Html.ActionLink("Ana Sayfa", "Index", "Home", new { @class = "btn btn-warning" })
+                            <div class="clearfix"></div>
+                            <hr>
+
+                            @foreach (var item in Model.Comments)
+                            {
+                                if (item.Username == HttpContext.Current.User.Identity.Name)
+                                {
+
+
+                                    <ul class="media-list">
+
+
+
+                                        <li class="media">
+                                            <a href="#" class="pull-left">
+                                                <div class="m-r-10"><img width="45" class="rounded" src="@item.Post.PostImage"></div>
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="text-muted pull-right">
+                                                    <small class="text-muted">@item.PublishDate</small>
+                                                </span>
+                                                <strong class="text-success">@item.Username</strong> &nbsp; @Html.ActionLink("Sil", "DeleteComment", "Home", new { userName = item.Username ,
+  currentName = HttpContext.Current.User.Identity.Name , commentId = item.CommentId}, new { @class = "btn btn-danger" })
+                                                <p>
+                                                    @item.CommentText
+                                                </p>
+                                            </div>
+                                        </li>
+
+                                        
+
+                                    </ul>
+
+                                    
+
+                                }
+
+
+                                else
+                                {
+                                    <ul class="media-list">
+
+
+
+                                        <li class="media">
+                                            <a href="#" class="pull-left">
+                                                <div class="m-r-10"><img width="45" class="rounded" src="@item.Post.PostImage"></div>
+                                            </a>
+                                            <div class="media-body">
+                                                <span class="text-muted pull-right">
+                                                    <small class="text-muted">@item.PublishDate</small>
+                                                </span>
+                                                <strong class="text-success">@item.Username</strong>
+                                                <p>
+                                                    @item.CommentText
+                                                </p>
+                                            </div>
+                                        </li>
+
+
+
+
+                                    </ul>
+
+                                }
+
+                            }
+
+
+
+                        </div>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        else
+        {
+    <div class="alert alert-danger" role="alert">
+        Yorum yapmak ve yorumları okumak için giris yapın! @Html.ActionLink("Giris yap", "Login", "Home", new { @class = "btn btn-primary" })
+        @Html.ActionLink("Ana Sayfa", "Index", "Home", new { @class = "btn btn-warning" })
+    </div>
+
+        }
+
+    </div>
+
+        
+
+</body>
+</html>

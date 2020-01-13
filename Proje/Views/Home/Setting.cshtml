@@ -1,0 +1,44 @@
+﻿@model Proje.Models.Setting
+
+@{
+    ViewBag.Title = "Setting";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Ayarlar</h5>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Site Baslıgı</th>
+                                        <th scope="col">Etiket Satırı</th>
+                                        <th scope="col">Herkes Üye Olabilir</th>
+                                        <th scope="col">Yeni Kullanıcı Varsayılan Rolu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(x => x.SiteTitle, new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(x => x.TagLine, new { @class = "form-control" })</td>
+                                        <td>@Html.CheckBoxFor(x => x.AnyoneCanRegister, new { @class = "form-control" })</td>
+                                        <td>@Html.DropDownListFor(x=>x.NewUserDefaultRole,(List<SelectListItem>)ViewBag.Roles,new {@class = "form-control"})</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" name="btnUpdateSetting" value="Kaydet" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}

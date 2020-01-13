@@ -1,0 +1,58 @@
+﻿@model Proje.Models.User
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Kullanıcı Sil</h5>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr class="border-0">
+                                        <th class="border-0">ID</th>
+                                        <th class="border-0">Profil Fotografı</th>
+                                        <th class="border-0">Kullanıcı Adı</th>
+                                        <th class="border-0">Rol</th>
+                                        <th class="border-0">Durum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">@Html.DisplayTextFor(x => x.UserId)</th>
+                                        <td>
+                                            <div class="m-r-10"><img width="45" class="rounded" src="@Html.DisplayTextFor(x=>x.ProfilePhoto)"></div>
+                                        </td>
+                                        <td>@Html.DisplayTextFor(x => x.Username)</td>
+                                        <td>@Html.DisplayTextFor(x => x.Role)</td>
+
+                                        @if (Model.IsActive == true)
+                                        {
+                                            <td><span class="badge-dot badge-success mr-1"></span>Çevrimici </td>
+                                        }
+                                        else if (Model.IsActive == false)
+                                        {
+                                            <td><span class="badge-dot badge-danger mr-1"></span>Çevrimdısı </td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" name="" value="Sil" class="btn btn-danger" />
+                @Html.ActionLink("Listele", "ListUsers", "Home", new { @class = "btn btn-success" })
+            </div>
+        </div>
+    </div>
+</div>
+}

@@ -1,0 +1,45 @@
+﻿@model List<Proje.Models.UserMessage>
+@{
+    ViewBag.Title = "SentMessages";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Gönderilen Mesajlar</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">ID</th>
+                                            <th class="border-0">Içerik</th>
+                                            <th class="border-0">Kime</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <th>@Html.TextBox("ID", item.Id, new { @class = "form-control", disabled = "" })</th>
+                                            <th>@Html.TextBox("Content", item.Text, new { @class = "form-control", disabled = "" })</th>
+                                            <th>@Html.TextBox("User", item.User.Username, new { @class = "form-control", disabled = "" })</th>
+                                        </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.ActionLink("Mesajları Listele", "ListMessages", "Home", new { @class = "btn btn-warning" })
+                </div>
+            </div>
+
+        </div>
+    </div>

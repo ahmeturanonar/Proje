@@ -1,0 +1,43 @@
+﻿@model Proje.Models.Comment
+@{
+    ViewBag.Title = "CommentAdd";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm(new { }))
+{
+
+
+
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Yeni Yorum</h5>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Içerik</th>
+                                        <th scope="col">Kullanıcı</th>
+                                        <th scope="col">Yazı</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>@Html.TextBoxFor(x => x.CommentText, new { @class = "form-control" })</td>
+                                        <td>@Html.DropDownList("User",(List<SelectListItem>)ViewBag.Users,"Kullanıcı Seçiniz..",new {@class = "dropdown-item" })</td>
+                                        <td>@Html.DropDownListFor(x => x.PostId, (List<SelectListItem>)ViewBag.Posts, new { @class = "dropdown-item" })</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" name="btnAddComment" value="Paylaş" class="btn btn-success" />
+                @Html.ActionLink("Yorumları Listele", "ListComments", "Home", new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    </div>
+    }

@@ -1,0 +1,37 @@
+﻿@model Proje.Models.Category
+@{
+    ViewBag.Title = "CreateCategory";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+     
+    <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Kategori Ekle</h5>
+                        <div class="card-body">
+                            <div class="table-responsive ">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Kategori Adı</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">@Html.TextBoxFor(x=>x.CategoryName,new {@class="form-control" , placeholder="Örn: Spor" })</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" name="btnAddCategory" value="Ekle" class="btn btn-success" />
+                    @Html.ActionLink("Kategorileri Listele", "ListCategories", "Home", new { @class = "btn btn-warning" })
+                </div>
+            </div>
+    </div>
+}

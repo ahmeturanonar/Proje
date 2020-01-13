@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Proje.Models.Comment>
+@{
+    ViewBag.Title = "ListComments";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Yorum Listesi</h5>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr class="border-0">
+                                        <th class="border-0">ID</th>
+                                        <th class="border-0">Kullanıcı</th>
+                                        <th class="border-0">Içerik</th>
+                                        <th class="border-0">Yazı</th>
+                                        <th class="border-0">Düzenle</th>
+                                        <th class="border-0">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var comment in Model)
+                                    {
+
+                                    <tr>
+                                        <th scope="row">@comment.CommentId</th>
+                                        <th scope="row">@comment.Username</th>
+                                        <th scope="row">@comment.CommentText</th>
+                                        <th scope="row">@Html.ActionLink("Görüntüle","ListArticles","Home",new { postId = comment.PostId } , new {@class = "btn btn-warning" })</th>
+                                        <th scope="row">@Html.ActionLink("Düzenle", "EditComment", "Home", new { commentId = comment.CommentId }, new { @class = "btn btn-success" })</th>
+                                        <th scope="row">@Html.ActionLink("Sil", "DeleteComment", "Home", new { cId = comment.CommentId }, new { @class = "btn btn-danger" })</th>
+
+                                    </tr>
+
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

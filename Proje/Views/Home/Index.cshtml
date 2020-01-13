@@ -1,0 +1,80 @@
+﻿@using PagedList.Mvc
+
+@model Proje.Models.ViewModel
+
+
+
+
+
+@{Layout = "~/Views/_IndexLayoutPage.cshtml";
+}
+
+<style>
+
+    .pagination ul li {
+        float: left;
+        margin: 0 1px 0 0;
+        background: #909090;
+        list-style: none;
+    }
+
+        .pagination ul li a, .pagination ul li span {
+            display: block;
+            padding: 0 15px;
+            color: #fff;
+            font-size: 17px;
+            line-height: 38px;
+            text-decoration: none;
+        }
+
+        .pagination ul li.active {
+            color: #fff;
+            background-color: #4CAF50;
+        }
+
+        .pagination ul li:hover, .pagination ul li.active {
+            color: #fff;
+            background-color: #4CAF50;
+        }
+</style>
+
+@foreach (var post in Model.Posts)
+{
+
+
+    <article style="border:1px solid; padding:10px; box-shadow:5px 10px #888888; border-radius:10px;" >
+        <div class="article_image">
+            <a href="#">
+                <img src="@post.PostImage" alt="" title="">
+            </a>
+        </div>
+        <div class="post">
+            <h1 class="title">
+                <a href="#">@post.PostTitle</a>
+            </h1>
+
+            @if (post.PostText.Length <= 445)
+            {
+                <p>@Html.Raw(HttpUtility.HtmlDecode(post.PostText))</p>
+            }
+            else
+            {
+                <p>@Html.Raw(HttpUtility.HtmlDecode(post.PostText.Substring(0, 445)) + "...")</p>
+            }
+
+            <hr />
+
+            @Html.ActionLink("Devamini Oku...", "ReadMore", "Home", new { @post_id = post.PostId }, new { @class = "read_more" })
+            <a class="read_more" href="#">@(post.Category.CategoryName)</a> &nbsp;
+            <span class="fas fa-eye"> @post.TotalViews</span>  &nbsp;
+            <span class="fas fa-comment"> @post.Comment_Count</span>
+        </div>
+    </article>
+
+}
+
+<div style="position:relative; left:45%;">
+
+@Html.PagedListPager(Model.Posts, _PagedNo => Url.Action("Index", "Home", new { PagedNo = _PagedNo }))
+
+</div>

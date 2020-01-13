@@ -1,0 +1,69 @@
+﻿@model List<Proje.Models.UserMessage>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Gelen Kutusu</title>
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/AdminPanelContent/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/AdminPanelContent/libs/css/style.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/charts/chartist-bundle/chartist.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/charts/morris-bundle/morris.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/charts/c3charts/c3.css">
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/flag-icon-css/flag-icon.min.css">
+</head>
+<body>
+        <div class="dashboard">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card shadow-lg">
+                                <h5 class="card-header">Mesaj Listesi</h5>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <tr class="border-0">
+                                                    <th class="border-0">ID</th>
+                                                    <th class="border-0">Içerik</th>
+                                                    <th class="border-0">Kimden</th>
+                                                    <th class="border-0">Sil</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var message in Model)
+                                                {
+
+                                                    <tr>
+                                                        <td>@message.Id</td>
+                                                        <td>@message.Text</td>
+                                                        <td>@ViewBag.userName</td>
+                                                        <td>@Html.ActionLink("Sil", "MyProfileDeleteMessage", new { messageId = message.Id }, new { @class = "btn btn-danger" })</td>
+                                                    </tr>
+
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
+  

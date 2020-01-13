@@ -1,0 +1,57 @@
+﻿@model Proje.Models.User
+@{
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+<div class="container-fluid dashboard-content">
+    @using (Html.BeginForm("EditUsers", "Home"
+        , new { user_id = Model.UserId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Kullanıcı Düzenle</h5>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Profil Fotografı</th>
+                                        <th scope="col">Kullanıcı Adı</th>
+                                        <th scope="col">Sifre</th>
+                                        <th scope="col">Rol</th>
+                                        <th scope="col">Durum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">@Html.DisplayTextFor(x => x.UserId)</th>
+                                        <td><div class="m-r-10"><img width="60" class="rounded" src="@Html.DisplayTextFor(x=>x.ProfilePhoto)"></div></td>
+                                        <td>@Html.TextBoxFor(x => x.Username, new { @class = "form-control", style = "width:200px;" })</td>
+                                        <td>@Html.TextBoxFor(x => x.Password, new { @class = "form-control", style = "width:200px;" })</td>
+                                        <td>@Html.TextBoxFor(x => x.Role, new { @class = "form-control", style = "width:200px;" })</td>
+                                        @if (Model.IsActive == true)
+                                        {
+                                            <td><span class="badge-dot badge-success mr-1"></span>Çevrimici </td>
+                                        }
+                                        else
+                                        {
+                                            <td><span class="badge-dot badge-danger mr-1"></span>Çevrimdısı </td>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <b>Profil Resmi: </b><input type="file" name="file" class="" />
+                <br /> <br />
+                <input type="submit" name="btnEdit" value="Güncelle" class="btn btn-success" />
+                @Html.ActionLink("Listele", "ListUsers", "Home", new { @class = "btn btn-warning" })
+
+            </div>
+        </div>
+    }
+</div>

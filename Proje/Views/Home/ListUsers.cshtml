@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Proje.Models.User>
+@{
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+
+
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <h5 class="card-header">Kullanıcı Listesi</h5>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <tr class="border-0">
+                                                    <th class="border-0">ID</th>
+                                                    <th class="border-0">Profil Fotografı</th>
+                                                    <th class="border-0">Kullanıcı Adı</th>
+                                                    <th class="border-0">Rol</th>
+                                                    <th class="border-0">Durum</th>
+                                                    <th class="border-0">Düzenle</th>
+                                                    <th class="border-0">Sil</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var user in Model)
+                                                {
+                                                    <tr>
+                                                        <th scope="row">@user.UserId</th>
+                                                        <td>
+                                                            <div class="m-r-10"><img width="45" class="rounded" src="@user.ProfilePhoto"></div>
+                                                        </td>
+                                                        <td>@user.Username</td>
+                                                        <td>@user.Role</td>
+                                                        @if (user.IsActive == true)
+                                                        {
+                                                            <td><span class="badge-dot badge-success mr-1"></span>Çevrimici </td>
+                                                        }
+                                                        else if (user.IsActive == false)
+                                                        {
+                                                            <td><span class="badge-dot badge-danger mr-1"></span>Çevrimdısı </td>
+                                                        }
+                                                        <td>@Html.ActionLink("Düzenle", "EditUsers", "Home", new { user_id = user.UserId }, new { @class = "btn btn-success" })</td>
+                                                        <td>@Html.ActionLink("Sil", "DeleteUser", "Home", new { user_id = user.UserId } , new { @class = "btn btn-danger" })</td>
+
+                                                    </tr>
+
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>

@@ -1,0 +1,60 @@
+﻿@model Proje.Models.Category
+@{
+    ViewBag.Title = "DeleteCategory";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Kategorileri Düzenle</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table text-center">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">ID</th>
+                                            <th class="border-0">Kategori Adı</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <tr>
+                                            <th scope="row">@Html.DisplayTextFor(x => x.CategoryId)</th>
+                                            <td>@Html.DisplayTextFor(x => x.CategoryName)</td>
+
+                                        </tr>
+
+
+
+
+
+
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" name="btnCategoryUpdate" value="Sil" class="btn btn-danger" />
+                    @Html.ActionLink("Kategorileri Listele", "ListCategories", "Home", new { @class = "btn btn-warning" })
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+}

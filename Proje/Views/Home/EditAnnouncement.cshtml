@@ -1,0 +1,46 @@
+﻿@model Proje.Models.Announcement
+@{
+    ViewBag.Title = "EditAnnouncement";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Duyuru Düzenle</h5>
+                    <div class="card-body">
+                        <div class="table-responsive ">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Duyuru Metni</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+                                        <th>
+                                            @Html.TextAreaFor(model => model.AnnouncementText, new { @id = "ckeditor", @class = "form-control", @rows = "200" })
+                                            <script>
+                                                                        CKEDITOR.replace("ckeditor");
+                                            </script>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" name="btnEditAnnouncement" value="Güncelle" class="btn btn-success" />
+                @Html.ActionLink("Duyuruları Listele", "ListsAnnouncement", "Home", new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    </div>
+
+}
+

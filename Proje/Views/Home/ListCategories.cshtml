@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Proje.Models.Category>
+
+@{
+    ViewBag.Title = "ListCategories";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Kategori Listesi</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">ID</th>
+                                            <th class="border-0">Kategori Adı</th>
+                                            <th class="border-0">Düzenle</th>
+                                            <th class="border-0">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var category in Model)
+                                        {
+                                        <tr>
+                                            <th scope="row">@category.CategoryId</th>
+                                            <td>@category.CategoryName</td>
+                                            <td>@Html.ActionLink("Düzenle", "EditCategory", "Home", new { category_id = category.CategoryId }, new { @class = "btn btn-success" })</td>
+                                            <td>@Html.ActionLink("Sil", "DeleteCategory", "Home", new { category_id = category.CategoryId }, new { @class = "btn btn-danger" })</td>
+                                        </tr>
+
+
+                                         } 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+

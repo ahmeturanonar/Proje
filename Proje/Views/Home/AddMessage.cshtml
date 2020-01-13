@@ -1,0 +1,47 @@
+﻿@model Proje.Models.UserMessage
+@{
+    ViewBag.Title = "AddMessage";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+
+<div class="dashboard-ecommerce">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <h5 class="card-header">Yeni Mesaj</h5>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr class="border-0">
+                                        <th class="border-0">Içerik</th>
+                                        <th class="border-0">Kullanıcı</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    
+
+                                        <tr>
+                                            <th>@Html.TextBoxFor(x=>x.Text,new {@class = "form-control" })</th>
+                                            <th>@Html.DropDownListFor(x=>x.UserId,(IEnumerable<SelectListItem>)ViewBag.Users,new {@class = "dropdown-item" })</th>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                        <input type="submit" name="" value="Gönder" class="btn btn-success"/>
+                @Html.ActionLink("Mesajları Listele", "ListMessages","Home",new {@class = "btn btn-warning" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+}

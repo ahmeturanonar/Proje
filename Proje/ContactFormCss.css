@@ -1,0 +1,143 @@
+﻿/*------------- Form ---------------*/
+
+.nb-form {
+    position: fixed;
+    z-index: 9999;
+    width: 300px;
+    background: #FFF;
+    right: 20px;
+    bottom: -367px;
+    transition: all .8s cubic-bezier(.22, .67, .43, 1.22) .2s;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+    .nb-form:hover {
+        bottom: 0px;
+    }
+
+    /*-- User Icon --*/
+
+    .nb-form .user-icon {
+        position: absolute;
+        top: -49px;
+        right: 12px;
+        display: block;
+        width: 58px;
+        margin: 20px auto 15px;
+        border-radius: 100%;
+    }
+
+    /*-- Title --*/
+
+    .nb-form .title {
+        background: #03a9f4;
+        font-size: 16px !important;
+        padding: 20px 18px !important;
+        color: #fff !important;
+        border-radius: 10px 10px 0 0;
+    }
+
+    /*-- Text --*/
+
+    .nb-form p {
+        font-size: 13px;
+        margin: 0;
+        padding: 15px;
+        color: #666;
+    }
+
+        .nb-form p.message {
+            margin-left: 7px;
+        }
+
+    /*-- Form Elements --*/
+
+    .nb-form form {
+        padding: 0 15px 15px 15px;
+    }
+
+    .nb-form input,
+    .nb-form textarea {
+        font-family: Tahoma, Geneva, sans-serif;
+        font-size: 12px;
+        width: 254px;
+        max-width: 254px;
+        margin-bottom: 10px;
+        margin-left: 7px;
+        padding: 6px;
+        border: none;
+        border-radius: 4px;
+        color: #999;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+        .nb-form input:focus,
+        .nb-form textarea:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .nb-form input[type='submit'] {
+            display: block;
+            width: 120px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all .4s ease;
+            color: #fff !important;
+            border: none;
+        }
+
+            .nb-form input[type='submit']:hover {
+                box-shadow: 0 3px 3px 0 rgba(0,0,0,0.07),0 1px 7px 0 rgba(0,0,0,0.02),0 3px 1px -1px rgba(0,0,0,0.1);
+            }
+
+    .nb-form textarea {
+        min-height: 110px;
+    }
+
+
+    .nb-form ::-webkit-input-placeholder {
+        color: #ccb0b0;
+    }
+
+    .nb-form ::-moz-placeholder {
+        color: #ccb0b0;
+    }
+
+    .nb-form :-ms-input-placeholder {
+        color: #ccb0b0;
+    }
+
+    .nb-form :-moz-placeholder {
+        color: #ccb0b0;
+    }
+
+    .nb-form input[type='submit'] {
+        background: #03a9f4;
+    }
+
+@media screen and (max-width: 676px) {
+    .nb-form:hover .user-icon {
+        display: none;
+    }
+
+    .nb-form .message {
+        display: none;
+    }
+
+    .nb-form form {
+        padding-top: 15px;
+    }
+
+    .nb-form {
+        right: 50%;
+        bottom: -320px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

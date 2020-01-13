@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Proje.Models.Post>
+@{
+    ViewBag.Title = "ListArticles";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <h5 class="card-header">Yazı Listesi</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">Yazı ID</th>
+                                            <th class="border-0">Yazı Resmi</th>
+                                            <th class="border-0">Yazı Baslıgı</th>
+                                            <th class="border-0">Yazı Icerigi</th>
+                                            <th class="border-0">Kategori</th>
+                                            <th class="border-0">Düzenle</th>
+                                            <th class="border-0">Sil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var posts in Model)
+                                        {
+
+                                        <tr>
+                                            <th scope="row">@posts.PostId</th>
+                                            <td><div class="m-r-10"><img width="45" class="rounded" src="@posts.PostImage"></div></td>
+                                            <td>@posts.PostTitle</td>
+
+                                            @if (posts.PostText.Length <= 445)
+                                            {
+                                                <td>@Html.Raw(posts.PostText)</td>
+
+                                            }
+                                            else
+                                            {
+                                                <td>@Html.Raw(posts.PostText.Substring(0,445))...</td>
+                                            }
+
+                                            <td>@posts.Category.CategoryName</td>
+                                            <td>@Html.ActionLink("Düzenle", "EditArticle", "Home", new { post_id = posts.PostId }, new { @class = "btn btn-success" })</td>
+                                            <td>@Html.ActionLink("Sil", "DeleteArticle", "Home", new { post_id = posts.PostId }, new { @class = "btn btn-danger" })</td>
+                                        </tr>
+
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

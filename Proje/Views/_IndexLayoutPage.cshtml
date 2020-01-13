@@ -1,0 +1,195 @@
+﻿@model Proje.Models.ViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@Model.Setting.SiteTitle</title>
+    @*<meta http-equiv="refresh" content="3">*@
+    <meta charset="utf-8">
+    <meta name="author" content="pixelhint.com">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+    <link href="~/ButtonCss.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/AdminPanelContent/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="~/ContactFormCss.css" rel="stylesheet" />
+    <link href="~/AlertCss.css" rel="stylesheet" />
+    <link href="~/AlertCss.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/BtnCss.css" rel="stylesheet" />
+
+
+</head>
+<body>
+
+
+
+    <header>
+
+
+
+
+
+
+        <div class="wrapper">
+
+
+
+            <a href="#"><img src="~/Content/img/logo.png" class="h_logo" alt="@Model.Setting.TagLine" title=""></a>
+            <nav>
+                <ul class="main_nav" style="font-family:'Yu Gothic'">
+                    <li class="current"><a href="#">Blog</a></li>
+                    <li><a href="#">Hakkımda</a></li>
+                    <li><a href="#">İş</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+        @if (string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+        {
+            @Html.ActionLink("Giriş yap", "Login", "Home", new { @class = "button4", style = "position:absolute; right:150px; top:50px; background-color:#4e9af1" })
+
+
+
+
+            if (Model.Setting.AnyoneCanRegister == false)
+            {
+
+
+
+
+            }
+
+            else
+            {
+                @Html.ActionLink("Kayıt ol", "Register", "Home", new { @class = "button4", style = "position:absolute; right:50px; top:50px; background-color:#f1bb4e;" })
+            }
+
+
+        }
+
+
+
+        @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+
+        {
+            if (HttpContext.Current.User.Identity.Name.Length <= 5)
+            {
+
+                if (ViewBag.cRole == "Admin" || ViewBag.cRole == "Company")
+                {
+                    @Html.ActionLink(HttpContext.Current.User.Identity.Name, "Panel", "Home", new { @class = "button4", style = "position:absolute; right:190px; top:60px; background-color:#D3D3D3;" })
+                }
+                else
+                {
+                    @Html.ActionLink(HttpContext.Current.User.Identity.Name, "MyProfile", "Home", new { @class = "button4", style = "position:absolute; right:190px; top:60px; background-color:#D3D3D3;" })
+                }
+
+
+
+
+            }
+            else
+            {
+
+
+                if (ViewBag.cRole == "Admin" || ViewBag.cRole == "Company")
+                {
+                    @Html.ActionLink(HttpContext.Current.User.Identity.Name.Substring(0, 5) + "...", "Panel", "Home", new { @class = "button4", style = "position:absolute; right:190px; top:60px; background-color:#D3D3D3;" })
+                }
+                else
+                {
+                    @Html.ActionLink(HttpContext.Current.User.Identity.Name.Substring(0, 5) + "...", "MyProfile", "Home", new { @class = "button4", style = "position:absolute; right:190px; top:60px; background-color:#D3D3D3;" })
+                }
+
+            }
+
+
+            @Html.ActionLink("Çıkış yap", "Logout", "Home", new { @class = "button4", style = "position:absolute; right:60px; top:60px; background-color:#f14e4e;" })
+
+        }
+
+
+
+
+
+
+    </header><!-- Header End -->
+
+
+
+
+    <section class="main wrapper">
+
+        @RenderBody()
+
+
+
+    </section>
+
+
+    <footer>
+
+        @if (Model.Announcement != null)
+        {
+            <div style="width:100%; height:65px; background-color:coral; position:fixed; bottom:0px;">
+                <br />
+                <br />
+                <marquee behavior="alternate" style="font-family:Arial;">@Html.Raw(Model.Announcement.AnnouncementText)</marquee>
+            </div>
+
+
+        }
+
+
+
+
+
+        @using (Html.BeginForm())
+        {
+
+
+            <div class="container" style="font-family:Arial;">
+                <div class="row">
+                    <div class="nb-form">
+                        <p class="title">Mesaj Gönder</p>
+                        <img src="https://www.davefeltz.com/assets/images/46745062_l.jpg" alt="" class="user-icon">
+                        <p class="message">İstek veya şikayetlerinizi bu pencereden iletebilirsiniz...</p>
+
+
+                        <input type="text" name="cpname" placeholder="İsim:" required>
+                        <input type="email" name="cpemail" placeholder="Email:" required>
+                        <input type="tel" name="cpphone" placeholder="Telefon:" required>
+                        <textarea name="cpmessage" placeholder="Mesaj:" required></textarea>
+                        <input type="submit" value="Gönder">
+
+
+                    </div>
+                </div>
+            </div>
+
+        }
+
+
+
+        <div class="wrapper">
+            <img class="logo_footer" src="~/Content/img/logo_footer.png" alt="Blogin" title="">
+            <p class="rights">© 2019 Blogin.com  -  All Rights Reserved  -  Find more free Templates at <a href="http://Pixelhint.com" target="_blink">Pixelhint.com</a> </p>
+            <ul class="social_profiles">
+                <li class="f"><a href="#" target="_blink"></a></li>
+                <li class="t"><a href="#" target="_blink"></a></li>
+                <li class="be"><a href="#" target="_blink"></a></li>
+                <li class="d"><a href="#" target="_blink"></a></li>
+            </ul>
+        </div>
+    </footer><!-- Footer End -->
+
+
+
+</body>
+
+
+
+</html>
