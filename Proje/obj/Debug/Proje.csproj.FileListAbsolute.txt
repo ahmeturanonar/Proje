@@ -88,3 +88,4 @@ C:\Users\Pixelplus\source\repos\Proje\Proje\bin\Microsoft.AspNet.SignalR.Core.pd
 C:\Users\Pixelplus\source\repos\Proje\Proje\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Users\Pixelplus\source\repos\Proje\Proje\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
 C:\Users\Pixelplus\source\repos\Proje\Proje\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Pixelplus\source\repos\Proje\Proje\obj\Debug\Proje.csprojAssemblyReference.cache
