@@ -10,7 +10,9 @@ namespace Proje
     {
         public void Send(string username, string message)
         {
-            Clients.All.send(username, message);
+
+            Clients.All.sendMessage(username, message);
         }
+
     }
 }

@@ -1124,9 +1124,11 @@ namespace Proje.Controllers
 
 
         [Authorize]
+        [HttpGet]
 
         public ActionResult Chat(string uName)
         {
+
             ProjeContext db = new ProjeContext();
 
             ChatViewModel chatViewModel = new ChatViewModel();
@@ -1140,14 +1142,15 @@ namespace Proje.Controllers
 
             else
             {
-                chatViewModel.Users = db.User.ToList();
+                chatViewModel.User = db.User.FirstOrDefault(x => x.Username == uName);
 
-                chatViewModel.User = db.User.Where(x => x.Username == uName).FirstOrDefault();
-
-                return View(chatViewModel);
+                return Json(chatViewModel, JsonRequestBehavior.AllowGet);
             }
-           
+
 
         }
+
+
+
     }
 }
